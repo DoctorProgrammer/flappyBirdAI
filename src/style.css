@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+#game-window {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+#bird {
+    width: 7%;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 20vw;
+}
+
+#ground {
+    width: 200%;
+    height: 10%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url('./IMG/ground-long.png') repeat-x;
+    animation: move-ground 5s linear infinite;
+    animation-play-state: paused;
+    z-index: 1;
+}
+
+#background {
+    width: 200%;
+    height: 90%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: flex;
+    animation: move-background 20s linear infinite;
+    animation-play-state: paused;
+}
+
+#background img {
+    width: 50%;
+    height: 100%;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+    z-index: 3;
+}
+
+.pillars {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 100vw;
+    top: 0;
+    z-index: 4; /* Ensure pillars are in front of the background but behind the bird */
+}
+
+.pillars img.top {
+    transform: rotate(180deg);
+}
+
+.pillar {
+    width: 100px;
+}
+
+@keyframes move-pillar {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+@keyframes move-ground {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes move-background {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
