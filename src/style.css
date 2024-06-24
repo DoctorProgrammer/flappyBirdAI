@@ -7,96 +7,106 @@
 body {
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: aliceblue;
-}
-
-#game-window {
-    width: 80%;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    position: relative;
-}
-
-#bird {
-    width: 7%;
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 20vw;
 }
 
 #ground {
-    width: 200%;
-    height: 10%;
     position: absolute;
     bottom: 0;
     left: 0;
-    background: url('./IMG/ground-long.png') repeat-x;
-    animation: move-ground 5s linear infinite;
-    animation-play-state: paused;
-    z-index: 1;
-}
-
-#background {
     width: 200%;
-    height: 90%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
+    height: 100px;
     display: flex;
-    animation: move-background 20s linear infinite;
-    animation-play-state: paused;
+    z-index: 1;
+    animation: move-ground 7.5s linear infinite;
 }
 
-#background img {
-    width: 50%;
+#ground img {
+    width: 100%;
     height: 100%;
 }
 
-#score {
+#background {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 2em;
-    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 90%;
+    display: flex;
+    z-index: -1;
+    animation: move-background 25s linear infinite;
 }
 
-.pillars {
+#background img {
+    width: 100%;
+    height: 100%;
+}
+
+#bird {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50px;
+    z-index: 2;
+}
+
+#pillars {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    left: 100vw;
-    top: 0;
-    z-index: 4; /* Ensure pillars are in front of the background but behind the bird */
-}
-
-.pillars img.top {
-    transform: rotate(180deg);
+    z-index: 0;
 }
 
 .pillar {
-    width: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    animation: move-pillar 7.5s linear infinite;
+    animation-play-state: paused;
 }
 
-@keyframes move-pillar {
-    0% {
-        transform: translateX(100vw);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+.pillar img {
+    width: 500px;
+    height: 100%;
 }
 
+.pillar img:first-child {
+    transform: scaleY(-1) translateY(100px);
+}
+
+.pillar img:nth-child(2) {
+    transform: translateY(100px);
+}
+
+#pillars .pillar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+#pillars .pillar:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+#pillars .pillar:nth-child(3) {
+    animation-delay: 3s;
+}
+
+#pillars .pillar:nth-child(4) {
+    animation-delay: 4.5s;
+}
+
+#pillars .pillar:nth-child(5) {
+    animation-delay: 6s;
+}
 
 @keyframes move-ground {
     0% {
@@ -104,6 +114,15 @@ body {
     }
     100% {
         transform: translateX(-50%);
+    }
+}
+
+@keyframes move-pillar {
+    0% {
+        transform: translateX(90%);
+    }
+    100% {
+        transform: translateX(-10%);
     }
 }
 
